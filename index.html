@@ -96,22 +96,181 @@ document.addEventListener("DOMContentLoaded", function() {
 
     /* Banner */
     .banner {
-      background: linear-gradient(to right, hsl(0, 0%, 30%), hsl(0, 0%, 40%));
+      background: linear-gradient(90deg, #991b1b 0%, #dc2626 50%, #991b1b 100%);
       text-align: center;
-      padding: 14px 16px;
-      position: relative;
-      z-index: 10;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      padding: 12px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(220, 38, 38, 0.45);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .banner-text {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: bold;
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .banner-timer-badge {
+      background: rgba(0, 0, 0, 0.45);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: #fef08a;
+      font-size: 14px;
+      border: 1px solid rgba(254, 240, 138, 0.35);
+      letter-spacing: 0.5px;
+    }
+
+    /* Fast Action Bonus Card */
+    .urgency-card {
+      background: linear-gradient(145deg, rgba(220, 38, 38, 0.2) 0%, rgba(35, 12, 18, 0.9) 60%, rgba(20, 10, 12, 0.98) 100%);
+      border: 2px solid #ef4444;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+      animation: fadeInUp 0.8s ease-out 0.25s both, urgencyGlow 3s ease-in-out infinite;
+      box-shadow: 0 0 30px rgba(239, 68, 68, 0.3), inset 0 0 20px rgba(239, 68, 68, 0.12);
+      text-align: left;
+    }
+
+    @keyframes urgencyGlow {
+      0%, 100% { box-shadow: 0 0 25px rgba(239, 68, 68, 0.3), inset 0 0 15px rgba(239, 68, 68, 0.1); border-color: #ef4444; }
+      50% { box-shadow: 0 0 45px rgba(239, 68, 68, 0.6), inset 0 0 25px rgba(239, 68, 68, 0.2); border-color: #fca5a5; }
+    }
+
+    .urgency-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .urgency-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ef4444;
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .urgency-timer-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      color: #fca5a5;
+      font-weight: 600;
+    }
+
+    .urgency-timer-box strong {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: #ffffff;
+      font-size: 14.5px;
+      letter-spacing: 0.5px;
+    }
+
+    .urgency-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+
+    .urgency-highlight {
+      color: #f87171;
+    }
+
+    .urgency-desc {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 12px;
+    }
+
+    .urgency-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+
+    .urgency-perk-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #f3f4f6;
+    }
+
+    .urgency-perk-icon {
+      color: #34d399;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .urgency-warning {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #fca5a5;
+      background: rgba(220, 38, 38, 0.18);
+      border-left: 3px solid #ef4444;
+      padding: 9px 12px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .cta-urgency-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #fca5a5;
+      text-align: center;
+      margin-top: -8px;
+      margin-bottom: 20px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #ef4444;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #ef4444;
+      display: inline-block;
+      animation: pulseDotAnim 1.4s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulseDotAnim {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.75); }
     }
 
     /* Main content */
@@ -567,8 +726,8 @@ document.addEventListener("DOMContentLoaded", function() {
     <!-- Banner -->
     <div class="banner">
       <p class="banner-text">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        Sign-Up Bonus for the next <span id="countdown">30:00</span>!
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fef08a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        <span><strong>FIRST OFFER FAST-ACTION BOOST:</strong> Complete 1st task in <span class="banner-timer-badge countdown">30:00</span> for +$20.00 Bonus!</span>
       </p>
     </div>
 
@@ -606,23 +765,27 @@ document.addEventListener("DOMContentLoaded", function() {
               <p class="step-description">Sign up in under 30 seconds</p>
             </div>
           </div>
-          <div class="step">
-            <div class="step-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"></line><line x1="14" y1="12" x2="18" y2="12"></line><path d="M6 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"></path></svg>
+          <div class="step" style="border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 8px; padding: 10px; background: rgba(239, 68, 68, 0.08);">
+            <div class="step-icon" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
             </div>
             <div class="step-content">
-              <h4 class="step-title">Start playing &amp; earning</h4>
-              <p class="step-description">Complete starter games to unlock high-paying popular offers.</p>
+              <h4 class="step-title" style="color: #f87171; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                Start 1st game within 30 mins!
+                <span style="font-size: 10px; background: #ef4444; color: white; padding: 2px 6px; border-radius: 4px; font-weight: 800; letter-spacing: 0.5px;">REQUIRED FOR BONUS</span>
+              </h4>
+              <p class="step-description">You must open &amp; start your first offer within 30 minutes of installing to lock in your <strong>+$20.00 Fast-Action Bonus</strong> before it expires.</p>
             </div>
           </div>
         </div>
                 
-  <a href="https://www.pcbdfv7trk.com/QZ85XF/37LWQHS/" class="cta-button">
+          <a href="https://www.pcbdfv7trk.com/QZ85XF/37LWQHS/" class="cta-button">
   <span>
     Start Earning Now!
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
   </span>
 </a>
+        
        <!-- Pro Tip -->
         <div class="pro-tip">
           <div class="pro-tip-header">
@@ -671,16 +834,38 @@ document.addEventListener("DOMContentLoaded", function() {
   </div>
 
   <script>
-    // Countdown Timer
-    let timeLeft = 30 * 60;
-    const countdownEl = document.getElementById('countdown');
-    
-    setInterval(() => {
-      timeLeft = timeLeft > 0 ? timeLeft - 1 : 30 * 60;
-      const mins = Math.floor(timeLeft / 60);
-      const secs = timeLeft % 60;
-      countdownEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-    }, 1000);
+    // 30-Minute Synchronized Countdown Timer (persisted in sessionStorage)
+    (function() {
+      const TOTAL_SECONDS = 30 * 60;
+      let timerEnd = sessionStorage.getItem('tu_bonus_expiry');
+      if (!timerEnd) {
+        timerEnd = Date.now() + (TOTAL_SECONDS * 1000);
+        sessionStorage.setItem('tu_bonus_expiry', timerEnd);
+      } else {
+        timerEnd = parseInt(timerEnd, 10);
+      }
+
+      function updateCountdown() {
+        const remainingMs = timerEnd - Date.now();
+        const remainingSec = Math.max(0, Math.floor(remainingMs / 1000));
+        const mins = Math.floor(remainingSec / 60);
+        const secs = remainingSec % 60;
+        const timeStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        
+        document.querySelectorAll('.countdown').forEach(el => {
+          el.textContent = timeStr;
+        });
+
+        if (remainingSec <= 0) {
+          // If expired, reset to a 10 min last-chance grace period
+          timerEnd = Date.now() + (10 * 60 * 1000);
+          sessionStorage.setItem('tu_bonus_expiry', timerEnd);
+        }
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    })();
 
     // Generate Snowflakes
     const snowfall = document.getElementById('snowfall');
